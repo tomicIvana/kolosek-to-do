@@ -1,0 +1,13 @@
+<table>
+<% @tasks.reverse_each do |task| %>
+  <tr>
+    <td
+      id=<%= get_id(task)%>
+      class=<%= get_color_class(task)%>
+    ><%= task.body %></td>
+    <td>
+      <%= show_button(task) %>
+    </td>
+    <% end %>
+  </tr>
+</table>

@@ -1,0 +1,78 @@
+<h1>Tasks</h1>
+<p><font color="blue", size=3>Add a new task: </font> </p>
+
+<div class="container">
+    <div class="row">
+    <%= form_tag 'item/create', :method => :put, :remote => true do %>
+        <div class="col-md-6">
+            <div class="form-group">
+                <%= text_field_tag :name, params[:name] %>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <%= submit_tag "Add Item", class: "btn", :name => nil %>
+            </div>
+        </div>
+    <% end %>
+    </div>
+    <div class="row" id="task">
+        <%= render partial: 'task' %>
+    </div>
+</div>
+
+
+
+
+<!--
+<%= form_for :task, url: tasks_path do |form| %>
+    <table>
+      <tbody>
+      <tr>
+        <td>
+          <div class="field">
+            <%= form.label :text %>
+            <%= form.text_field :body, id: :task_text %>
+          </div>
+           <div class="actions">
+            <%= form.submit %>
+          </div>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+<% end %> 
+
+<table>
+  <tbody>
+    <% @tasks.each do |task| %>
+    <tr>
+      <td <%= 'id=task' + task.id.to_s %>
+          <% if task.finished %>
+          <%= 'style=color:#FF0000'%>
+          <% end %> >
+        <%= task.body %>
+      </td>
+      <td>
+        <button type="button" onclick="finishTask(<%= task.id %>)" id=<%= task.id %>> Check </button>
+      </td>
+    <% end %>
+  </tbody>
+</table>
+
+
+<script>
+    function finishTask(id) {
+        console.log('updating task with id', id);
+        $.ajax({
+                type: 'POST',
+                url: "<%= tasks_path %>/" + id + "/finish",
+                contentType: 'application/json',
+                success: function (response) {
+                    $('#' + id + '_content').css('color', 'red');
+                },
+                error: function (error){
+                    alert(error.responseText);
+                }        });
+    }
+</script> -->
